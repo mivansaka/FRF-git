@@ -9,18 +9,25 @@ x17HzUnhealthy = table2array(x17HzUnhealthy);
 
 %choose the analysis data
 list = {'x10HzHealthy','x10HzUnhealthy','x17HzHealthy','x17HzUnhealthy'};
-[indx,tf] = listdlg('ListString',list,'name','Data Selection','SelectionMode','single','ListSize',[350 250])
-data_name = [];
+[indx,tf] = listdlg('ListString',list,'name','Data Selection','SelectionMode','single','ListSize',[350 250]);
+%assignment to variables
 switch indx
     case '1'
-        data_name = [data_name x10HzHealthy];
+        AI0 = x10HzHealthy(:,2)/24;
+        AI1 = x10HzHealthy(:,3)/24;
+    case '2'
+        AI0 = x10HzUnhealthy(:,2)/24;
+        AI1 = x10HzUnhealthy(:,3)/24;
+    case '3'
+        AI0 = x17HzHealthy(:,2)/24;
+        AI1 = x17HzHealthy(:,3)/24;
+    case '4'
+        AI0 = x17HzUnhealthy(:,2)/24;
+        AI1 = x17HzUnhealthy(:,3)/24;
 end
-%assignment to variables
+
 %time is the same frequence,only choose one
-time = x10HzHealthy{:,1};
-%%AI1 is the Accelerometer signal and recovery gained value
-AI0 = data_name{:,2}/24;
-AI1 = data_name{:,3}/24;
+time = x10HzHealthy(:,1);
 
 %initialize parameters
 samplerate = 5000;  %in Hz

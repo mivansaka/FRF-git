@@ -1,3 +1,4 @@
 %this m file is for process the FRF data
-%read the data file
+%read the Raw data file to workspace
+load(RawData.mat);
 %remember to import data

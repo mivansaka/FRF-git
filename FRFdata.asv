@@ -1,0 +1,8 @@
+%this m file is for process the FRF data
+%read the data file
+format long
+%Define number of files
+n=inputdlg('How many files?','Number of text');
+n=cell2mat(n);
+n=str2num(n);
+names=zeros(1,n);

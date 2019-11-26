@@ -12,22 +12,23 @@ list = {'x10HzHealthy','x10HzUnhealthy','x17HzHealthy','x17HzUnhealthy'};
 [indx,tf] = listdlg('ListString',list,'name','Data Selection','SelectionMode','single','ListSize',[350 250]);
 %assignment to variables
 switch indx
-    case '1'
+    case 1
+        time = x10HzHealthy(:,1);
         AI0 = x10HzHealthy(:,2)/24;
         AI1 = x10HzHealthy(:,3)/24;
-    case '2'
+    case 2
+        time = x10HzUnhealthy(:,1);
         AI0 = x10HzUnhealthy(:,2)/24;
         AI1 = x10HzUnhealthy(:,3)/24;
-    case '3'
+    case 3
+        time = x17HzHealthy(:,1);
         AI0 = x17HzHealthy(:,2)/24;
         AI1 = x17HzHealthy(:,3)/24;
-    case '4'
+    case 4
+        time = x17HzUnhealthy(:,1);
         AI0 = x17HzUnhealthy(:,2)/24;
         AI1 = x17HzUnhealthy(:,3)/24;
 end
-
-%time is the same frequence,only choose one
-time = x10HzHealthy(:,1);
 
 %initialize parameters
 samplerate = 5000;  %in Hz
@@ -50,7 +51,12 @@ ylabel('Voltage');
 %pass signals through a 0.5Hz high-pass fliter
 d = filter(Hd,AI1);
 subplot(3,1,2);
-plot(time,d)
+plot(time,d);
+axis([0 6e+7 -0.1 0.2]);
+    %label plot
+title('Time domain image');
+xlabel('Time(s)');
+ylabel('Voltage');
 
 %basic fast fourier transform
 FAI1 = fft(AI1);

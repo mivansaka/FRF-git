@@ -34,7 +34,7 @@ end
 fs = 5000;  % Sample frequency in Hz
 N = numel(time);    %number of samples
 f = (0:N-1)*(fs/N); %frequency range
-
+f = fs*(0:(length(time)/2))/length(time);
 %use filterDesigner to create the filterDesigner
 Hd = HzFDF;
 
@@ -61,11 +61,14 @@ ylabel('Voltage');
 
 %basic fast fourier transform
 FAI1 = fft(AI1);
-power = abs(FAI1).^2/N;
+A = abs ( FAI1 / length(AI1));
+Amp = A(1 : length(AI1) / 2 + 1);
+Amp(2 : end - 1) = 2 * Amp(2 : end - 1);
+% power = abs(FAI1).^2/N;
 subplot(3,1,3);
-plot(f,power);
+plot(f,Amp);
     %label plot
-axis([0 2500 0 2]);
+% axis([0 2500 0 2]);
 title('Frequency domain image');
 xlabel('Frequency(Hz)');
 ylabel('Amplitude');

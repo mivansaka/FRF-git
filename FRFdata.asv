@@ -52,7 +52,7 @@ grid on;
 subplot(3,1,1);
 plot(time,AI1);
 axis([0 6e+7 -0.1 0.2]);
-%label the plot
+    %label plot
 title('Time domain image');
 xlabel('Time(s)');
 ylabel('Voltage');
@@ -62,7 +62,7 @@ AfterF = filter(Hd,AI1);
 subplot(3,1,2);
 plot(time,AfterF);
 axis([0 6e+7 -0.1 0.2]);
-%label the plot
+    %label plot
 title('Time domain image');
 xlabel('Time(s)');
 ylabel('Voltage');
